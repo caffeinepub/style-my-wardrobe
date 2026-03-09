@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Playfair Display (Display / Headings) ── */
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay-VF.woff2") format("woff2-variations");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay-Italic-VF.woff2") format("woff2-variations");
+  font-weight: 400 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ── Outfit (Body / UI) ── */
+@font-face {
+  font-family: "Outfit";
+  src: url("/assets/fonts/Outfit-VF.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Warm ivory/cream background */
+    --background: 0.975 0.008 75;
+    --foreground: 0.18 0.02 40;
+
+    /* Card: pure warm white */
+    --card: 0.99 0.004 75;
+    --card-foreground: 0.18 0.02 40;
+
+    /* Popover */
+    --popover: 0.99 0.004 75;
+    --popover-foreground: 0.18 0.02 40;
+
+    /* Primary: deep terracotta/rust */
+    --primary: 0.42 0.12 30;
+    --primary-foreground: 0.97 0.005 75;
+
+    /* Secondary: dusty blush rose */
+    --secondary: 0.92 0.03 20;
+    --secondary-foreground: 0.3 0.07 25;
+
+    /* Muted: warm greige */
+    --muted: 0.94 0.012 70;
+    --muted-foreground: 0.52 0.025 50;
+
+    /* Accent: soft gold/amber */
+    --accent: 0.88 0.06 80;
+    --accent-foreground: 0.25 0.05 40;
+
+    /* Destructive */
+    --destructive: 0.55 0.2 20;
+    --destructive-foreground: 0.97 0.005 75;
+
+    /* Border, input, ring */
+    --border: 0.88 0.018 60;
+    --input: 0.88 0.018 60;
+    --ring: 0.42 0.12 30;
+
+    /* Charts */
+    --chart-1: 0.62 0.15 30;
+    --chart-2: 0.68 0.1 20;
+    --chart-3: 0.55 0.08 200;
+    --chart-4: 0.72 0.12 80;
+    --chart-5: 0.48 0.13 280;
+
+    /* Sidebar */
+    --sidebar: 0.97 0.01 70;
+    --sidebar-foreground: 0.18 0.02 40;
+    --sidebar-primary: 0.42 0.12 30;
+    --sidebar-primary-foreground: 0.97 0.005 75;
+    --sidebar-accent: 0.92 0.03 20;
+    --sidebar-accent-foreground: 0.3 0.07 25;
+    --sidebar-border: 0.88 0.018 60;
+    --sidebar-ring: 0.42 0.12 30;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+/* Grain texture overlay */
+@layer utilities {
+  .grain {
+    position: relative;
+  }
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 128px 128px;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: inherit;
+  }
+}

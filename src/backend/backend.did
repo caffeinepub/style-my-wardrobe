@@ -1,0 +1,34 @@
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type OutfitSuggestion = 
+ record {
+   description: text;
+   items: vec ClothingItem;
+ };
+type ClothingItem = 
+ record {
+   category: text;
+   color: text;
+   id: nat;
+   name: text;
+   occasions: vec text;
+ };
+service : {
+  _initializeAccessControlWithSecret: (userSecret: text) -> ();
+  addClothingItem: (name: text, category: text, color: text, occasions:
+   vec text) -> (nat);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  deleteClothingItem: (id: nat) -> (bool);
+  getCallerUserRole: () -> (UserRole) query;
+  getOutfitSuggestions: (occasion: text) -> (vec OutfitSuggestion) query;
+  getStyleTips: () -> (vec record {
+                             text;
+                             text;
+                           }) query;
+  getWardrobe: () -> (vec ClothingItem) query;
+  isCallerAdmin: () -> (bool) query;
+}
